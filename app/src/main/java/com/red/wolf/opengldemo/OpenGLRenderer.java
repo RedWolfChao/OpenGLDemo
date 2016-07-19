@@ -18,7 +18,8 @@ public class OpenGLRenderer implements GLSurfaceView.Renderer {
     private Square square = new Square();
 
     /**
-     * onSurfaceCreated做一些初始化操作
+     * onSurfaceCreated
+     * 当创建GLSurfaceView时被调用，只调用一次．在这个方法中执行只发生一次的动作
      */
     @Override
     public void onSurfaceCreated(GL10 gl10, EGLConfig eglConfig) {
@@ -38,7 +39,8 @@ public class OpenGLRenderer implements GLSurfaceView.Renderer {
     }
 
     /**
-     * onDrawFrame 真正渲染的地方
+     * onDrawFrame
+     * 系统在每次重绘GLSurfaceView时调用此方法．此方法是绘制图形对象的主要的执行点．
      */
     @Override
     public void onDrawFrame(GL10 gl10) {
@@ -54,6 +56,10 @@ public class OpenGLRenderer implements GLSurfaceView.Renderer {
         //B比A小50%，C比B小50%。 然后以屏幕中心逆时针旋转A，B以A为中心顺时针旋转，C以B为中心顺时针旋转同时以自己中心高速逆时针旋转。
     }
 
+    /**
+     * onSurfaceChanged
+     * 当GLSurfaceView几何体改变时系统调用此方法，比如GLSurfaceView的大小改变或设备屏幕的方向改变．使用此方法来响应GLSurfaceView容器的变化
+     */
     @Override
     public void onSurfaceChanged(GL10 gl10, int width, int height) {
         //  将当前的View Port设置为新的大小
