@@ -3,14 +3,23 @@ package com.red.wolf.opengldemo;
 import android.opengl.GLSurfaceView;
 import android.opengl.GLU;
 
+import com.red.wolf.opengldemo.utils.DebugUtils;
+
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
 /**
- * Created by Administrator on 2016/7/18 0018.
+ * 渲染器
  */
 public class OpenGLRenderer implements GLSurfaceView.Renderer {
+    //  测试计数器 <与程序无关>
+    private static int count = 0;
+    //  正方形
+    private Square square = new Square();
 
+    /**
+     * onSurfaceCreated做一些初始化操作
+     */
     @Override
     public void onSurfaceCreated(GL10 gl10, EGLConfig eglConfig) {
         //  设置背景为黑色 RGBA
@@ -26,14 +35,23 @@ public class OpenGLRenderer implements GLSurfaceView.Renderer {
         //  Really nice perspective calculations.
         //  真的很好的角度计算
         gl10.glHint(GL10.GL_PERSPECTIVE_CORRECTION_HINT, GL10.GL_DEPTH_BUFFER_BIT);
-
-
     }
 
+    /**
+     * onDrawFrame 真正渲染的地方
+     */
     @Override
     public void onDrawFrame(GL10 gl10) {
         //  清空屏幕和深度缓冲区
         gl10.glClear(GL10.GL_COLOR_BUFFER_BIT | GL10.GL_DEPTH_BUFFER_BIT);
+        //  将gl调离屏幕4个单位<往里<即屏幕的内部>调><参数 X Y Z>
+        gl10.glTranslatef(0, 0, -5);
+        //  开始画正方形
+        square.draw(gl10);
+        //  重置 Matrix<这样也是有缺点,就一直画了.>
+        gl10.glLoadIdentity();
+        DebugUtils.LogI("onDrawFrame被调用了" + count++ + "次");
+        //B比A小50%，C比B小50%。 然后以屏幕中心逆时针旋转A，B以A为中心顺时针旋转，C以B为中心顺时针旋转同时以自己中心高速逆时针旋转。
     }
 
     @Override
@@ -50,8 +68,5 @@ public class OpenGLRenderer implements GLSurfaceView.Renderer {
         gl10.glMatrixMode(GL10.GL_MODELVIEW);
         //  重置模型视图矩阵
         gl10.glLoadIdentity();
-
     }
-
-
 }

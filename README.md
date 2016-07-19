@@ -1,2 +1,5 @@
-# OpenGLDemo
-My OpenGL Learning
+# My OpenGL study notes #
+
+----------
+
+
