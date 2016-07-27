@@ -15,8 +15,7 @@ public class TutorialPartI extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         GLSurfaceView view = new GLSurfaceView(this);
-        view.setRenderer(new OpenGLRenderer());
-
+        view.setRenderer(new OpenGL3DRenderer());
         setContentView(view);
     }
 }
