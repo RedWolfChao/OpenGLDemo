@@ -15,7 +15,7 @@ public class OpenGLRenderer implements GLSurfaceView.Renderer {
     //  角度
     private float angle = 0;
     //  正方形
-    private Square square = new Square();
+    private SmoothColoredSquare square = new SmoothColoredSquare();
 
     /**
      * onSurfaceCreated
@@ -55,7 +55,7 @@ public class OpenGLRenderer implements GLSurfaceView.Renderer {
         //首先画A 首先保存当前矩阵
         gl10.glPushMatrix();
         //  A 以??为中心 逆时针旋转
-        gl10.glRotatef(angle, 0, 0, 1);
+        gl10.glRotatef(angle, 1, 0, 1);
         //  画 A
         square.draw(gl10);
         //  从栈中取出<最新的<最后的><出栈>>矩阵
@@ -64,7 +64,7 @@ public class OpenGLRenderer implements GLSurfaceView.Renderer {
         //  然后画 B 同样 还是先入栈 此时栈是空的
         gl10.glPushMatrix();
         //  让它围绕着A旋转<顺时针>    <参数说明<angle是角度<后面的是X,Y,Z 用数字表示真假,0表示假,非0表示真,要是X,Y为0,Z为非0 那么就是围着Z轴转,要是全是0,那就是围着X轴转>>>
-        gl10.glRotatef(-angle, 0, 0, 1);
+        gl10.glRotatef(-angle * 3, 0, 1, 1);
         //  平移B     X,Y,Z<这个参数就更好解释了,就是距离上一个图形的XYZ轴的距离>
         gl10.glTranslatef(2, 0, 0);
         //  缩放      <没的说,XYZ的大小比>
