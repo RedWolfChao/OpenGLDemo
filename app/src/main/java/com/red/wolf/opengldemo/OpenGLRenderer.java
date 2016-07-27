@@ -3,6 +3,7 @@ package com.red.wolf.opengldemo;
 import android.opengl.GLSurfaceView;
 import android.opengl.GLU;
 
+import com.red.wolf.opengldemo.squares.SmoothColoredSquare;
 import com.red.wolf.opengldemo.utils.DebugUtils;
 
 import javax.microedition.khronos.egl.EGLConfig;

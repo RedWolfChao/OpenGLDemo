@@ -1,4 +1,4 @@
-package com.red.wolf.opengldemo;
+package com.red.wolf.opengldemo.squares;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
